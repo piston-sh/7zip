@@ -3,7 +3,7 @@ services:
 
 script:
   - docker build -t sourceforts/7zip:$TRAVIS_BUILD_NUMBER .
-  - docker tag sourceforts/steamcmd:ubuntu-xenial-$TRAVIS_BUILD_NUMBER sourceforts/steamcmd:latest
+  - docker tag sourceforts/7zip:$TRAVIS_BUILD_NUMBER sourceforts/7zip:latest
 
 before_deploy:
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
