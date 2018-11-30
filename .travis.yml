@@ -1,0 +1,20 @@
+services:
+  - docker
+
+script:
+  - docker build -t sourceforts/7zip:$TRAVIS_BUILD_NUMBER .
+  - docker tag sourceforts/steamcmd:ubuntu-xenial-$TRAVIS_BUILD_NUMBER sourceforts/steamcmd:latest
+
+before_deploy:
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
+deploy:
+  provider: script
+  script: bash .travisci/deploy.sh
+  on:
+    branch: master
+
+after_success:
+  - ./.travisci/send.sh success $DISCORD_WEBHOOK_URL
+after_failure:
+  - ./.travisci/send.sh failure $DISCORD_WEBHOOK_URL
