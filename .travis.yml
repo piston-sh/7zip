@@ -2,8 +2,8 @@ services:
   - docker
 
 script:
-  - docker build -t sourceforts/7zip:$TRAVIS_BUILD_NUMBER .
-  - docker tag sourceforts/7zip:$TRAVIS_BUILD_NUMBER sourceforts/7zip:latest
+  - docker build -t pistonsh/7zip:$TRAVIS_BUILD_NUMBER .
+  - docker tag pistonsh/7zip:$TRAVIS_BUILD_NUMBER pistonsh/7zip:latest
 
 before_deploy:
   - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
